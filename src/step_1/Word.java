@@ -13,32 +13,49 @@ public class Word {
     pushAlphabet(direction, count);
   }
 
-  //TODO : 밀어내기 구현
   public void pushAlphabet(String direction, int count) {
     int wordLength = alphabets.size();
     int pushCount = count % wordLength;
-    List<String> pushedAlphabets = new ArrayList<>();
-
     if (direction.equalsIgnoreCase("R") && count > 0) {
-      pushedAlphabets.addAll(alphabets.subList(alphabets.size() - pushCount, alphabets.size()));
-      pushedAlphabets.addAll(alphabets.subList(0, alphabets.size() - pushCount));
-      alphabets = pushedAlphabets;
+      pushRightPlus(pushCount);
     }
     if (direction.equalsIgnoreCase("R") && count < 0) {
-      pushedAlphabets.addAll(alphabets.subList(-pushCount, alphabets.size()));
-      pushedAlphabets.addAll(alphabets.subList(0, -pushCount));
-      alphabets = pushedAlphabets;
+      pushRightMinus(pushCount);
     }
     if (direction.equalsIgnoreCase("L") && count > 0) {
-      pushedAlphabets.addAll(alphabets.subList(pushCount, alphabets.size()));
-      pushedAlphabets.addAll(alphabets.subList(0, pushCount));
-      alphabets = pushedAlphabets;
+      pushLeftPlus(pushCount);
     }
     if (direction.equalsIgnoreCase("L") && count < 0) {
-      pushedAlphabets.addAll(alphabets.subList(alphabets.size() + pushCount, alphabets.size()));
-      pushedAlphabets.addAll(alphabets.subList(0, alphabets.size() + pushCount));
-      alphabets = pushedAlphabets;
+      pushLeftMinus(pushCount);
     }
+  }
+
+  private void pushRightPlus(int pushCount) {
+    List<String> pushedAlphabets = new ArrayList<>();
+    pushedAlphabets.addAll(alphabets.subList(alphabets.size() - pushCount, alphabets.size()));
+    pushedAlphabets.addAll(alphabets.subList(0, alphabets.size() - pushCount));
+    alphabets = pushedAlphabets;
+  }
+
+  private void pushRightMinus(int pushCount) {
+    List<String> pushedAlphabets = new ArrayList<>();
+    pushedAlphabets.addAll(alphabets.subList(-pushCount, alphabets.size()));
+    pushedAlphabets.addAll(alphabets.subList(0, -pushCount));
+    alphabets = pushedAlphabets;
+  }
+
+  private void pushLeftPlus(int pushCount) {
+    List<String> pushedAlphabets = new ArrayList<>();
+    pushedAlphabets.addAll(alphabets.subList(pushCount, alphabets.size()));
+    pushedAlphabets.addAll(alphabets.subList(0, pushCount));
+    alphabets = pushedAlphabets;
+  }
+
+  private void pushLeftMinus(int pushCount) {
+    List<String> pushedAlphabets = new ArrayList<>();
+    pushedAlphabets.addAll(alphabets.subList(alphabets.size() + pushCount, alphabets.size()));
+    pushedAlphabets.addAll(alphabets.subList(0, alphabets.size() + pushCount));
+    alphabets = pushedAlphabets;
   }
 
   @Override
