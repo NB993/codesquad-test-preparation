@@ -3,10 +3,6 @@ package step_1;
 public class Main {
 
   public static void main(String[] args) {
-    input();
-  }
-
-  public static void input() {
     InputView inputView = new InputView();
     String[] input = inputView.input();
     String inputWord = input[0];
@@ -15,7 +11,5 @@ public class Main {
 
     Word word = new Word(inputWord, direction, count);
     PrintView.printWord(word);
-    inputView.close();
   }
-
 }
