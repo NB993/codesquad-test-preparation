@@ -46,12 +46,12 @@ public class InputView {
     int count = 0;
     try {
       count = Integer.parseInt(countString);
+      if (count < -100 || 100 < count) {
+        throw new IllegalArgumentException("밀어낼 횟수는 -100 ~ 100 사이의 값을 입력해주세요.");
+      }
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("밀어낼 횟수가 제대로 입력되지 않았습니다.");
     }
 
-    if (count < -100 || 100 < count) {
-      throw new IllegalArgumentException("밀어낼 횟수는 -100 ~ 100 사이의 값을 입력해주세요.");
-    }
   }
 }
