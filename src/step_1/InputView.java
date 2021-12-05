@@ -4,13 +4,14 @@ import java.util.Scanner;
 
 public class InputView {
   private final Scanner scanner = new Scanner(System.in);
+  private final int RIGHT_INPUT_LENGTH = 3;
 
   public String[] input() {
     String[] input = scanner.nextLine().trim().split(" ");
     try {
       validate(input);
     } catch(IllegalArgumentException e) {
-      e.getMessage();
+      System.out.println(e.getMessage());
       return input();
     }
     return input;
@@ -23,26 +24,25 @@ public class InputView {
     validateCount(input[2]);
   }
 
-  private void validateLength(String[] input) {
-    if (input.length > 3) {
-      throw new IllegalArgumentException("공백 없는 단어, 방향, 밀어낼 횟수를 각각 한 칸씩만 띄워서 다시 입력해주세요.");
+  private void validateLength(String[] input) throws IllegalArgumentException {
+    if (input.length != RIGHT_INPUT_LENGTH) {
+      throw new IllegalArgumentException("'공백 없는 단어 v 방향 v 밀어낼 횟수' 를 각각 한 칸씩만 띄워서 다시 입력해주세요.");
     }
   }
 
-  private void validateWord(String word) {
+  private void validateWord(String word) throws IllegalArgumentException {
     if (word.contains(" ")) {
       throw new IllegalArgumentException("공백 없는 단어를 입력해주세요.");
     }
   }
 
-  private void validateDirection(String direction) {
-    String upperCaseDirection = direction.toUpperCase();
-    if (!upperCaseDirection.equals("L") && !upperCaseDirection.equals("R")) {
+  private void validateDirection(String direction) throws IllegalArgumentException {
+    if (!direction.equalsIgnoreCase("L") && !direction.equalsIgnoreCase("R")) {
       throw new IllegalArgumentException("방향은 l/L 또는 r/R을 입력해주세요.");
     }
   }
 
-  private void validateCount(String countString) {
+  private void validateCount(String countString) throws IllegalArgumentException {
     int count = 0;
     try {
       count = Integer.parseInt(countString);
