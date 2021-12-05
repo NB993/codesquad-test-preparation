@@ -3,6 +3,7 @@ package step_1;
 import java.util.Scanner;
 
 public class InputView {
+
   private final Scanner scanner = new Scanner(System.in);
   private final int RIGHT_INPUT_LENGTH = 3;
 
@@ -10,7 +11,7 @@ public class InputView {
     String[] input = scanner.nextLine().trim().split(" ");
     try {
       validate(input);
-    } catch(IllegalArgumentException e) {
+    } catch (IllegalArgumentException e) {
       System.out.println(e.getMessage());
       return input();
     }
@@ -53,5 +54,9 @@ public class InputView {
       throw new IllegalArgumentException("밀어낼 횟수가 제대로 입력되지 않았습니다.");
     }
 
+  }
+
+  public void close() {
+    scanner.close();
   }
 }

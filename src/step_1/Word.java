@@ -3,9 +3,9 @@ package step_1;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Word {
+
   private List<String> alphabets;
 
   public Word(String word, String direction, int count) throws IllegalArgumentException {
