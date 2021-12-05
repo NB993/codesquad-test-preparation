@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class InputView {
 
   private final Scanner scanner = new Scanner(System.in);
-  private final int RIGHT_INPUT_LENGTH = 3;
+  private static final int RIGHT_INPUT_LENGTH = 3;
 
   public String[] input() {
     String[] input = scanner.nextLine().trim().split(" ");
