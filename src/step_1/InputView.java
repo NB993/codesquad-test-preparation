@@ -20,7 +20,6 @@ public class InputView {
 
   private void validate(String[] input) throws IllegalArgumentException {
     validateLength(input);
-    validateWord(input[0]);
     validateDirection(input[1]);
     validateCount(input[2]);
   }
@@ -28,12 +27,6 @@ public class InputView {
   private void validateLength(String[] input) throws IllegalArgumentException {
     if (input.length != RIGHT_INPUT_LENGTH) {
       throw new IllegalArgumentException("'공백 없는 단어 v 방향 v 밀어낼 횟수' 를 각각 한 칸씩만 띄워서 다시 입력해주세요.");
-    }
-  }
-
-  private void validateWord(String word) throws IllegalArgumentException {
-    if (word.contains(" ")) {
-      throw new IllegalArgumentException("공백 없는 단어를 입력해주세요.");
     }
   }
 
