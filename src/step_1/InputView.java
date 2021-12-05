@@ -8,6 +8,7 @@ public class InputView {
   private static final int RIGHT_INPUT_LENGTH = 3;
 
   public String[] input() {
+    PrintView.printInputGuide();
     String[] input = scanner.nextLine().trim().split(" ");
     try {
       validate(input);
