@@ -8,53 +8,53 @@ public class Word {
 
   private List<String> alphabets;
 
-  public Word(String word, String direction, int count) throws IllegalArgumentException {
-    this.alphabets = Arrays.asList(word.split(""));
-    pushAlphabet(direction, count);
+  public Word(String[] input) {
+    this.alphabets = Arrays.asList(input[0].split(""));
+    pushAlphabet(input[1], Integer.parseInt(input[2]));
   }
 
   public void pushAlphabet(String direction, int count) {
     int wordLength = alphabets.size();
     int pushCount = count % wordLength;
     if (direction.equalsIgnoreCase("R") && count > 0) {
-      pushRightPlus(pushCount);
+      pushRightPlus(pushCount, wordLength);
     }
     if (direction.equalsIgnoreCase("R") && count < 0) {
-      pushRightMinus(pushCount);
+      pushRightMinus(pushCount, wordLength);
     }
     if (direction.equalsIgnoreCase("L") && count > 0) {
-      pushLeftPlus(pushCount);
+      pushLeftPlus(pushCount, wordLength);
     }
     if (direction.equalsIgnoreCase("L") && count < 0) {
-      pushLeftMinus(pushCount);
+      pushLeftMinus(pushCount, wordLength);
     }
   }
 
-  private void pushRightPlus(int pushCount) {
+  private void pushRightPlus(int pushCount, int wordLength) {
     List<String> pushedAlphabets = new ArrayList<>();
-    pushedAlphabets.addAll(alphabets.subList(alphabets.size() - pushCount, alphabets.size()));
-    pushedAlphabets.addAll(alphabets.subList(0, alphabets.size() - pushCount));
+    pushedAlphabets.addAll(alphabets.subList(wordLength - pushCount, wordLength));
+    pushedAlphabets.addAll(alphabets.subList(0, wordLength - pushCount));
     alphabets = pushedAlphabets;
   }
 
-  private void pushRightMinus(int pushCount) {
+  private void pushRightMinus(int pushCount, int wordLength) {
     List<String> pushedAlphabets = new ArrayList<>();
-    pushedAlphabets.addAll(alphabets.subList(-pushCount, alphabets.size()));
+    pushedAlphabets.addAll(alphabets.subList(-pushCount, wordLength));
     pushedAlphabets.addAll(alphabets.subList(0, -pushCount));
     alphabets = pushedAlphabets;
   }
 
-  private void pushLeftPlus(int pushCount) {
+  private void pushLeftPlus(int pushCount, int wordLength) {
     List<String> pushedAlphabets = new ArrayList<>();
-    pushedAlphabets.addAll(alphabets.subList(pushCount, alphabets.size()));
+    pushedAlphabets.addAll(alphabets.subList(pushCount, wordLength));
     pushedAlphabets.addAll(alphabets.subList(0, pushCount));
     alphabets = pushedAlphabets;
   }
 
-  private void pushLeftMinus(int pushCount) {
+  private void pushLeftMinus(int pushCount, int wordLength) {
     List<String> pushedAlphabets = new ArrayList<>();
-    pushedAlphabets.addAll(alphabets.subList(alphabets.size() + pushCount, alphabets.size()));
-    pushedAlphabets.addAll(alphabets.subList(0, alphabets.size() + pushCount));
+    pushedAlphabets.addAll(alphabets.subList(wordLength + pushCount, wordLength));
+    pushedAlphabets.addAll(alphabets.subList(0, wordLength + pushCount));
     alphabets = pushedAlphabets;
   }
 
