@@ -9,10 +9,10 @@
 
 ### 예시
 ```aidl
-apple r 2   ->   leapp
-apple r -2  ->   pleap
-apple l 2   ->   pleap
-apple l -2  ->   leapp
+apple r 2   -> leapp
+apple r -2  -> pleap
+apple l 2   -> pleap
+apple l -2  -> leapp
 ```
 
 <br>
